@@ -17,23 +17,55 @@ import com.github.pipiloveslife.converter.utils.SimpleUtils;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * factory for ConvertCommand, help to create a ConvertCommand object
+ *
  * @author by pipiloveslife on 2018/8/23.
  */
 public class EngineFactory {
 
+    /**
+     * this commander convert a object
+     *
+     * @param context spring application context
+     * @param object  the target be convert
+     * @return a commander for convert object
+     */
     public static ConvertCommand convertOne(ApplicationContext context, Object object) {
         return convertOneAtTime(context, object, ConvertTiming.NORMAL);
     }
 
+    /**
+     * this commander convert a object at some time, you need spend the timing
+     *
+     * @param context spring application context
+     * @param object  the target be convert
+     * @param timing  convert timing
+     * @return a commander for convert object
+     */
     public static ConvertCommand convertOneAtTime(ApplicationContext context, Object object, ConvertTiming timing) {
         SimpleUtils.assertNotNull(object);
         return ObjectEngine.instance(context, object, timing);
     }
 
+    /**
+     * this commander convert a object list
+     *
+     * @param context spring application context
+     * @param list    the list be convert
+     * @return a commander for convert list
+     */
     public static ConvertCommand convertList(ApplicationContext context, List<?> list) {
         return convertListAtTime(context, list, ConvertTiming.NORMAL);
     }
 
+    /**
+     * this commander convert a object list at the timing
+     *
+     * @param context spring application context
+     * @param list    the list be convert
+     * @param timing  convert timing
+     * @return a commander for convert list
+     */
     public static ConvertCommand convertListAtTime(ApplicationContext context, List<?> list,
                                                    ConvertTiming timing) {
         SimpleUtils.assertNotNull(list);
@@ -44,6 +76,14 @@ public class EngineFactory {
         }
     }
 
+    /**
+     * if you're not sure the type of target, use this method
+     *
+     * @param object  target
+     * @param context spring application context
+     * @param timing  convert timing
+     * @return a commander for target
+     */
     public static ConvertCommand imNotSure(Object object, ApplicationContext context, ConvertTiming timing) {
         SimpleUtils.assertNotNull(object);
         if (object instanceof List) {
@@ -55,8 +95,8 @@ public class EngineFactory {
         }
     }
 
-    public static ConvertCommand deepMultilineEngine(ApplicationContext context, List<?> list, Deep deep,
-                                                     Field field, ConvertTiming timing) {
+    public static ConvertCommand deepList(ApplicationContext context, List<?> list, Deep deep,
+                                          Field field, ConvertTiming timing) {
         FieldType type = deep.deepBy();
         switch (type) {
             case OBJECT:
@@ -71,8 +111,8 @@ public class EngineFactory {
         }
     }
 
-    public static ConvertCommand deepObjectEngine(ApplicationContext context, Object object, Deep deep,
-                                                  Field field, ConvertTiming timing) {
+    public static ConvertCommand deepObject(ApplicationContext context, Object object, Deep deep,
+                                            Field field, ConvertTiming timing) {
         FieldType type = deep.deepBy();
         Object fieldValue = SimpleUtils.safeGet(field, object);
         if (fieldValue == null) {
@@ -91,8 +131,7 @@ public class EngineFactory {
         }
     }
 
-    private static ConvertCommand deepConvertMultiLine(List<?> list, Field field,
-                                                       ApplicationContext context,
+    private static ConvertCommand deepConvertMultiLine(List<?> list, Field field, ApplicationContext context,
                                                        BiConsumer<List<Object>, Object> howToJoinList,
                                                        ConvertTiming timing) {
         List<Object> multiValue = new ArrayList<>();

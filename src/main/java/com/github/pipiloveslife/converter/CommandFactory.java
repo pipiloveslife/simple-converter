@@ -21,7 +21,7 @@ import org.springframework.context.ApplicationContext;
  *
  * @author by pipiloveslife on 2018/8/23.
  */
-public class EngineFactory {
+public class CommandFactory {
 
     /**
      * this commander convert a object

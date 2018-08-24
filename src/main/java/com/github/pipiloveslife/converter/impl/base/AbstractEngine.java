@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.pipiloveslife.converter.EngineFactory;
+import com.github.pipiloveslife.converter.CommandFactory;
 import com.github.pipiloveslife.converter.annotation.Convert;
 import com.github.pipiloveslife.converter.annotation.Deep;
 import com.github.pipiloveslife.converter.enums.EnumManager.ConvertTiming;
@@ -32,8 +32,8 @@ public abstract class AbstractEngine implements ConvertCommand {
             this.fieldExecutors.add(ConvertExecutor.instance(context, config, deep, field, size, timing));
             if (deep != null && config == null) {
                 this.deepEngines.add(
-                    object != null ? EngineFactory.deepObject(context, object, deep, field, timing)
-                        : EngineFactory.deepList(context, list, deep, field, timing));
+                    object != null ? CommandFactory.deepObject(context, object, deep, field, timing)
+                        : CommandFactory.deepList(context, list, deep, field, timing));
             }
         }
         return this;

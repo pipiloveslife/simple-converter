@@ -60,42 +60,42 @@ public class ConvertTest {
 
     @Test
     public void testConvertObjectWhenNormal() {
-        ConvertCommand command = EngineFactory.convertOne(null, paper);
+        ConvertCommand command = CommandFactory.convertOne(null, paper);
         command.execute();
         System.out.println(paper);
     }
 
     @Test
     public void testConvertObjectWhenSometimes() {
-        ConvertCommand command = EngineFactory.convertOneAtTime(null, paper, ConvertTiming.SOMETIMES);
+        ConvertCommand command = CommandFactory.convertOneAtTime(null, paper, ConvertTiming.SOMETIMES);
         command.execute();
         System.out.println(paper);
     }
 
     @Test
     public void testConvertObjectWhenOnce() {
-        ConvertCommand command = EngineFactory.convertOneAtTime(null, paper, ConvertTiming.ONCE);
+        ConvertCommand command = CommandFactory.convertOneAtTime(null, paper, ConvertTiming.ONCE);
         command.execute();
         System.out.println(paper);
     }
 
     @Test
     public void testConvertListWhenNormal() {
-        ConvertCommand command = EngineFactory.convertList(null, paperList);
+        ConvertCommand command = CommandFactory.convertList(null, paperList);
         command.execute();
         System.out.println(paperList);
     }
 
     @Test
     public void testConvertListWhenSometimes() {
-        ConvertCommand command = EngineFactory.convertListAtTime(null, paperList, ConvertTiming.SOMETIMES);
+        ConvertCommand command = CommandFactory.convertListAtTime(null, paperList, ConvertTiming.SOMETIMES);
         command.execute();
         System.out.println(paperList);
     }
 
     @Test
     public void testConvertListWhenOnce() {
-        ConvertCommand command = EngineFactory.convertListAtTime(null, paperList, ConvertTiming.ONCE);
+        ConvertCommand command = CommandFactory.convertListAtTime(null, paperList, ConvertTiming.ONCE);
         command.execute();
         System.out.println(paperList);
     }

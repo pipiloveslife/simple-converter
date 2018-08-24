@@ -15,7 +15,7 @@ import com.github.pipiloveslife.converter.utils.SimpleUtils;
 import org.springframework.context.ApplicationContext;
 
 /**
- * @author by 高垠琪 on 2018/8/23.
+ * @author by pipiloveslife on 2018/8/23.
  */
 public abstract class AbstractEngine implements ConvertCommand {
     protected List<FieldCommand> fieldExecutors;

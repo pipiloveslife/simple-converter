@@ -34,5 +34,7 @@ public @interface Convert {
 
     boolean useCache() default true;
 
+    boolean allowNull() default false;
+
     ConvertTiming[] when() default ConvertTiming.NORMAL;
 }

@@ -2,6 +2,8 @@ package com.github.pipiloveslife.converter.interfaces;
 
 import com.github.pipiloveslife.converter.annotation.Convert;
 
+import static com.github.pipiloveslife.converter.constant.Constants.NULL;
+
 /**
  * <p>
  * core interface, a converter of field must implement this interface
@@ -13,6 +15,7 @@ import com.github.pipiloveslife.converter.annotation.Convert;
  *
  * @author by pipiloveslife on 2018/8/23.
  */
+@FunctionalInterface
 public interface Converter {
 
     /**
@@ -31,6 +34,9 @@ public interface Converter {
      * @return unique key
      */
     default String generateKey(Object source) {
+        if (source == null) {
+            return this.getClass().getName() + NULL;
+        }
         return source.toString();
     }
 }

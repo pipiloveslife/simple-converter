@@ -44,7 +44,7 @@ public class ConvertExecutor implements FieldCommand {
     }
 
     public static FieldCommand instance(ApplicationContext context, Convert config, Deep deep, Field field, int size,
-                                 ConvertTiming timing) {
+                                        ConvertTiming timing) {
         boolean needConvert = config != null && (SimpleUtils.contains(config.when(), timing) || SimpleUtils
             .contains(config.when(), ConvertTiming.NORMAL));
         ConvertExecutor executor = null;
@@ -71,7 +71,7 @@ public class ConvertExecutor implements FieldCommand {
     }
 
     private Object convert(Object source, Converter converter) {
-        if (source == null) {
+        if (source == null && !this.config.allowNull()) {
             return null;
         }
         if (this.single) {

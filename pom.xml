@@ -6,7 +6,7 @@
 
     <groupId>com.github.pipiloveslife</groupId>
     <artifactId>simple-converter</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>1.0.1</version>
     <description>a simple converter</description>
     <packaging>jar</packaging>
 
